@@ -1,0 +1,1194 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Programmation Orientée Objet en PHP</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d95a1f3b-6d6f-4cb9-be81-95301c682310" class="page sans"><header><h1 class="page-title">Programmation Orientée Objet en PHP</h1><p class="page-description"></p></header><div class="page-body"><h2 id="3d816b9b-52dc-4bf2-b818-13a3537ce936" class="">Sommaire</h2><p id="a239ecc2-93f9-472c-8e47-97019de6ef77" class="">Ce sommaire présente les différents chapitres du livre &quot;Programmation Orientée Objet en PHP&quot; :</p><ol type="1" id="fb27075c-8199-41c2-bb57-d80beb1fd603" class="numbered-list" start="1"><li>Introduction à la programmation orientée objet</li></ol><ol type="1" id="846abec1-0b93-4287-ad6b-cf69312b940b" class="numbered-list" start="2"><li>Classes et objets</li></ol><ol type="1" id="f6d765f9-f417-40b0-9280-33111d71dce2" class="numbered-list" start="3"><li>Propriétés et méthodes</li></ol><ol type="1" id="04753682-4447-40d4-932a-44a7d7c3a31e" class="numbered-list" start="4"><li>Encapsulation</li></ol><ol type="1" id="154deda4-db40-48cc-8684-66af80d7e275" class="numbered-list" start="5"><li>Héritage</li></ol><ol type="1" id="7c95ccab-5d7c-4bc1-9127-e1f20fdf2b78" class="numbered-list" start="6"><li>Polymorphisme</li></ol><ol type="1" id="6c53df09-66ac-49cc-a0e8-9fe03813cb6d" class="numbered-list" start="7"><li>Interfaces</li></ol><ol type="1" id="d63b8118-118c-45d0-b1b8-10e4dd9a22e3" class="numbered-list" start="8"><li>Traits</li></ol><ol type="1" id="450d8921-7234-4cbb-97ef-0cfaa22a48e2" class="numbered-list" start="9"><li>Namespaces</li></ol><ol type="1" id="1600f1cb-d5da-4a68-abbc-15dd6114a609" class="numbered-list" start="10"><li>Exceptions</li></ol><ol type="1" id="cc6dc261-08eb-47be-9ecb-bfd80aa966cc" class="numbered-list" start="11"><li>Constructeur et Destructeur</li></ol><ol type="1" id="864d6de4-6ba9-439e-9000-96180c0dfecf" class="numbered-list" start="12"><li>Modificateurs d&#x27;accès</li></ol><ol type="1" id="0bb5c205-357d-4d97-9b2d-4f4507c09380" class="numbered-list" start="13"><li>Constantes de classe</li></ol><ol type="1" id="32c90aed-cd5f-4cf2-b819-2a365fdc3d4f" class="numbered-list" start="14"><li>Classes abstraites</li></ol><ol type="1" id="e187d148-6ced-4274-beab-ff67a9d4799e" class="numbered-list" start="15"><li>Différence entre les classes abstraites et les interfaces</li></ol><ol type="1" id="4810d21d-b027-4c57-9937-38160723650c" class="numbered-list" start="16"><li>Méthodes statiques</li></ol><ol type="1" id="b9e89d4d-2381-48ea-ad5e-a821dcd26a9d" class="numbered-list" start="17"><li>Propriétés statiques</li></ol><ol type="1" id="e7f44384-7f65-4c59-ab29-7c2ac218e342" class="numbered-list" start="18"><li>Le mot-clé final</li></ol><ol type="1" id="e386ca80-8816-4153-8fad-af6eea76d0db" class="numbered-list" start="19"><li>Autoloader</li></ol><ol type="1" id="de356187-0d7f-4b41-a4f8-137f4d1c7f95" class="numbered-list" start="20"><li>Méthodes magiques</li></ol><ol type="1" id="dfe3c917-3509-4336-a951-bf0022e49305" class="numbered-list" start="21"><li>Gestion des Erreurs et Exceptions</li></ol><ol type="1" id="2cf53a04-3538-4c79-a441-18f35c81009b" class="numbered-list" start="22"><li>Principes SOLID</li></ol><p id="6b947136-7e94-40a7-98bc-ef86cc257db6" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6d9d7e19-b94d-4860-be49-270cd640f5fb"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Ces chapitres couvrent les concepts fondamentaux de la programmation orientée objet en PHP, allant de l&#x27;introduction à la manipulation avancée des classes et des objets. Chaque chapitre explique en détail les différents aspects de la POO et fournit des exemples de code pour illustrer les concepts présentés.</div></figure><h2 id="b3103f4a-b5da-4441-bc57-a5192e0cc280" class="">Chapitre 1: Introduction à la programmation orientée objet</h2><p id="37899b5a-2444-4169-b5da-5a783f87ffda" class="">Le concept de la programmation orientée objet (POO) permet de structurer le code en utilisant des objets. C&#x27;est un paradigme de programmation qui repose sur des principes fondamentaux de la POO.</p><h2 id="c3cb8c13-fce2-458c-93b7-a2e3d592928c" class="">Chapitre 2: Classes et objets</h2><p id="e9ce8894-ffbf-4a25-acaa-3520580de4e8" class="">Dans ce chapitre, nous aborderons la création et l&#x27;instanciation de classes ainsi que les propriétés et les méthodes associées.</p><h2 id="36ecfd7b-884f-4b63-a475-586545a4b751" class="">Chapitre 3: Propriétés et méthodes</h2><p id="bf60ec0e-40fe-453e-b395-2b0be5eafa81" class="">Ici, nous discuterons de la définition des propriétés d&#x27;une classe et de l&#x27;utilisation des méthodes pour effectuer des actions spécifiques.</p><h2 id="4ba9557a-3170-410f-8b8c-8f3829a047ee" class="">Chapitre 4: Encapsulation</h2><p id="5bb576c8-2027-43fd-8f17-63e7f068280e" class="">L&#x27;encapsulation regroupe les propriétés et les méthodes d&#x27;un objet pour en cacher les détails internes et les protéger.</p><h2 id="aff025a9-0b7a-4d53-965a-afaf9bf4f3e6" class="">Chapitre 5: Héritage</h2><p id="00cbbd06-66b0-423d-9cb5-0fb7acf3f647" class="">Le concept d&#x27;héritage en POO permet de créer des classes dérivées qui héritent des propriétés et des méthodes d&#x27;une classe parente.</p><h2 id="e6aca76e-b99c-4f67-af7b-d8c1b6664e3d" class="">Chapitre 6: Polymorphisme</h2><p id="c87829b0-450d-4f3b-924a-808b5b3d7185" class="">Le polymorphisme est une technique qui permet de gérer des objets de différentes classes de manière interchangeable.</p><h2 id="45acb6c4-6a4e-4b18-be20-c6fdda961ab3" class="">Chapitre 7: Interfaces</h2><p id="8f96dac3-3103-4a7d-a11e-59152f5d0266" class="">Les interfaces définissent les méthodes qu&#x27;une classe doit implémenter, permettant ainsi de définir un contrat entre les classes.</p><h2 id="3cd521ba-fc56-4a9a-86fc-99feacc04b37" class="">Chapitre 8: Traits</h2><p id="88f88cdc-56bf-4364-89ce-283130db8c91" class="">Les traits sont utilisés pour réutiliser du code dans plusieurs classes sans utiliser l&#x27;héritage multiple.</p><h2 id="78c695e1-60b0-43ec-99c4-f8bff89f318f" class="">Chapitre 9: Namespaces</h2><p id="2111bccf-0fa3-419c-bac9-c13193af0fff" class="">Les espaces de noms permettent d&#x27;organiser le code en évitant les conflits de noms entre les classes.</p><h2 id="20b08678-6f7c-411a-9a42-489a5cb3c9cc" class="">Chapitre 10: Exceptions</h2><p id="72b79b44-aed1-4caa-9a9c-b7a0a0006e37" class="">Les exceptions sont utilisées pour gérer les erreurs et les situations exceptionnelles dans le code.</p><h2 id="874d3f9d-d584-4d74-9aa3-2d9aa643b5de" class="">Chapitre 11: Constructeur et Destructeur</h2><p id="90f86458-aa49-469e-916d-5e3acd754015" class="">Le constructeur et le destructeur sont des méthodes spéciales qui sont appelées lors de la création et de la destruction d&#x27;un objet.</p><h2 id="830a9350-bb7b-400e-9e38-6bca133c3ccc" class="">Chapitre 12: Modificateurs d&#x27;accès</h2><p id="8e835713-0411-4825-b8c6-177a739f8438" class="">Les modificateurs d&#x27;accès permettent de contrôler l&#x27;accès aux propriétés et aux méthodes d&#x27;une classe.</p><h2 id="115bf3f2-a673-4386-a221-7de556286fe7" class="">Chapitre 13: Constantes de classe</h2><p id="2ba063b5-9160-47c5-8bfa-a4a70d7e772c" class="">Les constantes de classe sont des valeurs qui ne peuvent pas être modifiées une fois qu&#x27;elles ont été définies.</p><h2 id="fd11b36d-ad92-45fb-aec9-f3d351ca2584" class="">Chapitre 14: Classes abstraites</h2><p id="d977b94a-1c6b-41ad-a2d8-1180a89b2325" class="">Les classes abstraites sont des classes qui ne peuvent pas être instanciées et qui servent de modèles pour d&#x27;autres classes.</p><h2 id="4124db87-ab56-4af9-b5b9-abba8d762f9a" class="">Chapitre 15: Différence entre les classes abstraites et les interfaces</h2><p id="d2e63e85-eba7-4d91-b741-bd7d6d62e0f0" class="">Ce chapitre explique la différence entre les classes abstraites et les interfaces et quand les utiliser.</p><h2 id="744067fb-a01a-4a4f-87d6-a5f6732557e0" class="">Chapitre 16: Méthodes statiques</h2><p id="70601650-5bef-4340-bb65-e04aa4c4b005" class="">Les méthodes statiques sont des méthodes qui appartiennent à la classe elle-même plutôt qu&#x27;à une instance de la classe.</p><h2 id="9c223034-f14c-4dec-a639-2748394f3737" class="">Chapitre 17: Propriétés statiques</h2><p id="57c3fdde-5f78-4480-8b90-961de932b068" class="">Les propriétés statiques sont des propriétés qui appartiennent à la classe elle-même plutôt qu&#x27;à une instance de la classe.</p><h2 id="1e520c5c-349f-4c49-a119-fa8d274b6ae9" class="">Chapitre 18: Le mot-clé final</h2><p id="428296f5-fffb-4b54-a765-706e462d5b13" class="">Le mot-clé final est utilisé pour indiquer qu&#x27;une classe ou une méthode ne peut pas être étendue ou redéfinie.</p><h2 id="00f00bda-eddd-4094-9ae3-c97b174cae87" class=""><strong>Chapitre 19: Autoloader</strong></h2><p id="2a7dd34c-3961-497e-b829-ae6ebb29cfe9" class="">L&#x27;autoloader est un mécanisme qui simplifie le processus d&#x27;inclusion des classes dans votre code. Il permet un chargement automatique des classes lorsqu&#x27;elles sont nécessaires, évitant ainsi d&#x27;avoir à les inclure manuellement à chaque fois.</p><h2 id="ffac164f-c7d1-4c1d-b3a2-7d1e4d22beac" class=""><strong>Chapitre 20: Méthodes magiques</strong></h2><p id="a2d91c80-9dca-4ce7-9dae-94627a24fb1e" class="">Les méthodes magiques, également appelées méthodes spéciales, offrent des fonctionnalités spécifiques qui peuvent être utilisées pour manipuler des objets d&#x27;une manière plus dynamique. Comprendre et maîtriser ces méthodes permet d&#x27;ajouter des comportements personnalisés à vos classes.</p><h2 id="38a984e4-df57-4bc9-b083-74231d8c9436" class=""><strong>Chapitre 21: Gestion des Erreurs et Exceptions</strong></h2><p id="ed45f491-debc-4c19-991f-9ddfef82e965" class="">La gestion des erreurs et des exceptions est cruciale dans tout programme. Dans ce chapitre, nous explorerons les mécanismes permettant de détecter, signaler et traiter les erreurs, améliorant ainsi la robustesse et la fiabilité de votre code.</p><h2 id="72cce97c-26c3-43d5-b895-0972df6167fb" class=""><strong>Chapitre 22: Principes SOLID</strong></h2><p id="d8bd58bc-294c-43f7-9cc1-8ddcd6758d7b" class="">Les principes SOLID sont un ensemble de cinq principes de conception orientée objet qui favorisent la création de logiciels flexibles, extensibles et maintenables. Comprendre et appliquer ces principes permet d&#x27;écrire un code plus propre, plus évolutif et plus facile à maintenir. Dans ce chapitre, nous explorerons chaque principe en détail et discuterons de la manière de les appliquer efficacement dans vos projets.</p><p id="ddd9072b-e0e6-4d61-8e7b-14a134e46e35" class="">
+</p><p id="640ac5bf-25e6-4e88-a3a7-c1f70da7da08" class="">
+</p><h2 id="6642a9c2-ab9d-4433-b215-060c40cc3f1b" class="">Chapitre 1: Introduction à la programmation orientée objet</h2><p id="4b932e65-4cf0-4b7a-9bca-c354c3dd4142" class="">La programmation orientée objet (POO) est un paradigme de programmation qui permet de structurer le code en utilisant des objets. Les objets sont des instances de classes, qui regroupent des données (propriétés) et des actions (méthodes). Par exemple, nous pouvons créer une classe <code>Personne</code> avec des propriétés telles que <code>nom</code> et <code>âge</code>, ainsi que des méthodes telles que <code>parler()</code> et <code>marcher()</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e1fcd761-2d21-4217-a72f-d2833cbbcd4f" class="code code-wrap"><code class="language-PHP">class Personne {
+    // Propriétés
+    public $nom;
+    public $âge;
+
+    // Méthodes
+    public function parler() {
+        echo &quot;Je m&#x27;appelle {$this-&gt;nom} et j&#x27;ai {$this-&gt;âge} ans.&quot;;
+    }
+
+    public function marcher() {
+        echo &quot;{$this-&gt;nom} marche.&quot;;
+    }
+}
+
+// Instanciation de la classe
+$personne = new Personne();
+$personne-&gt;nom = &quot;Jean&quot;;
+$personne-&gt;âge = 25;
+
+// Utilisation des méthodes
+$personne-&gt;parler();  // Affiche &quot;Je m&#x27;appelle Jean et j&#x27;ai 25 ans.&quot;
+$personne-&gt;marcher();  // Affiche &quot;Jean marche.&quot;
+</code></pre><h2 id="d653986b-72ac-4566-bf40-2a11fc8c444d" class="">Chapitre 2: Classes et objets</h2><p id="8c86b4f5-584d-4379-85c2-dde69f729730" class="">Les classes sont des modèles pour créer des objets. Elles définissent les propriétés et les méthodes que les objets de cette classe auront. L&#x27;instanciation d&#x27;une classe crée un objet spécifique à partir de ce modèle. Par exemple, nous pouvons créer une classe <code>Voiture</code> avec des propriétés telles que <code>marque</code> et <code>couleur</code>, ainsi que des méthodes telles que <code>demarrer()</code> et <code>arreter()</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0def433a-1514-4471-b2fa-c00317fcccf2" class="code code-wrap"><code class="language-PHP">class Voiture {
+    // Propriétés
+    public $marque;
+    public $couleur;
+
+    // Méthodes
+    public function demarrer() {
+        echo &quot;La voiture {$this-&gt;marque} démarre.&quot;;
+    }
+
+    public function arreter() {
+        echo &quot;La voiture {$this-&gt;marque} s&#x27;arrête.&quot;;
+    }
+}
+
+// Instanciation de la classe
+$voiture = new Voiture();
+$voiture-&gt;marque = &quot;BMW&quot;;
+$voiture-&gt;couleur = &quot;noire&quot;;
+
+// Utilisation des méthodes
+$voiture-&gt;demarrer();  // Affiche &quot;La voiture BMW démarre.&quot;
+$voiture-&gt;arreter();  // Affiche &quot;La voiture BMW s&#x27;arrête.&quot;
+</code></pre><h2 id="c0f37bda-0da5-4327-a57f-b79615669c50" class="">Chapitre 3: Propriétés et méthodes</h2><p id="c757df86-736c-4ba0-adc7-25c4622d882d" class="">Les propriétés d&#x27;une classe sont des variables qui stockent des valeurs spécifiques à chaque instance de la classe. Par exemple, dans la classe <code>Personne</code>, nous pouvons définir les propriétés <code>nom</code> et <code>âge</code>. Les méthodes d&#x27;une classe sont des fonctions qui effectuent des actions spécifiques sur les propriétés de la classe ou sur d&#x27;autres variables. Par exemple, dans la classe <code>Personne</code>, nous pouvons définir les méthodes <code>parler()</code> et <code>marcher()</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5ca7dc75-97e9-4c56-9bc2-cda38e82ceb0" class="code code-wrap"><code class="language-PHP">class Personne {
+    // Propriétés
+    public $nom;
+    public $âge;
+
+    // Méthodes
+    public function parler() {
+        echo &quot;Je m&#x27;appelle {$this-&gt;nom} et j&#x27;ai {$this-&gt;âge} ans.&quot;;
+    }
+
+    public function marcher() {
+        echo &quot;{$this-&gt;nom} marche.&quot;;
+    }
+}
+
+// Instanciation de la classe
+$personne = new Personne();
+$personne-&gt;nom = &quot;Jean&quot;;
+$personne-&gt;âge = 25;
+
+// Utilisation des méthodes
+$personne-&gt;parler();  // Affiche &quot;Je m&#x27;appelle Jean et j&#x27;ai 25 ans.&quot;
+$personne-&gt;marcher();  // Affiche &quot;Jean marche.&quot;
+</code></pre><h2 id="001c2bda-7d42-497a-b74b-29fa297dccc7" class="">Chapitre 4: Encapsulation</h2><p id="fbc13824-d333-4675-8d6d-bc44c99e9417" class="">L&#x27;encapsulation est un concept clé de la programmation orientée objet qui permet de regrouper les propriétés et les méthodes d&#x27;une classe pour en cacher les détails internes et les protéger. Cela signifie que les propriétés d&#x27;une classe ne peuvent pas être directement accessibles ou modifiées depuis l&#x27;extérieur de la classe. Au lieu de cela, des méthodes spéciales appelées &quot;accesseurs&quot; et &quot;mutateurs&quot; peuvent être utilisées pour accéder aux propriétés et les modifier de manière contrôlée.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ac8e0db5-20a4-4fb0-9d40-989c0bc21815" class="code code-wrap"><code class="language-PHP">class Personne {
+    // Propriétés encapsulées
+    private $nom;
+    private $âge;
+
+    // Accesseurs et mutateurs
+    public function getNom() {
+        return $this-&gt;nom;
+    }
+
+    public function setNom($nom) {
+        $this-&gt;nom = $nom;
+    }
+
+    public function getÂge() {
+        return $this-&gt;âge;
+    }
+
+    public function setÂge($âge) {
+        $this-&gt;âge = $âge;
+    }
+
+    // Méthodes
+    public function parler() {
+        echo &quot;Je m&#x27;appelle {$this-&gt;nom} et j&#x27;ai {$this-&gt;âge} ans.&quot;;
+    }
+
+    public function marcher() {
+        echo &quot;{$this-&gt;nom} marche.&quot;;
+    }
+}
+
+// Instanciation de la classe
+$personne = new Personne();
+$personne-&gt;setNom(&quot;Jean&quot;);
+$personne-&gt;setÂge(25);
+
+// Utilisation des méthodes
+$personne-&gt;parler();  // Affiche &quot;Je m&#x27;appelle Jean et j&#x27;ai 25 ans.&quot;
+$personne-&gt;marcher();  // Affiche &quot;Jean marche.&quot;
+</code></pre><h2 id="0b0738c5-8ee9-4fc1-af4b-339692862a79" class="">Chapitre 5: Héritage</h2><p id="d3f3560b-a3a4-425f-a3d1-171541fb3aaf" class="">Le concept d&#x27;héritage en programmation orientée objet permet de créer des classes dérivées qui héritent des propriétés et des méthodes d&#x27;une classe parente. Cela permet de réutiliser le code existant et de créer des classes plus spécifiques à partir d&#x27;une classe générale. La classe dérivée, également appelée &quot;classe enfant&quot; ou &quot;sous-classe&quot;, peut ajouter de nouvelles fonctionnalités ou modifier le comportement hérité de la classe parente.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d0949ae1-fa11-4716-a389-32bfd2828fcf" class="code code-wrap"><code class="language-PHP">class Animal {
+    // Propriétés
+    protected $nom;
+    protected $âge;
+
+    // Méthodes
+    public function __construct($nom, $âge) {
+        $this-&gt;nom = $nom;
+        $this-&gt;âge = $âge;
+    }
+
+    public function parler() {
+        echo &quot;{$this-&gt;nom} fait du bruit.&quot;;
+    }
+}
+
+class Chien extends Animal {
+    // Méthodes spécifiques aux chiens
+    public function aboyer() {
+        echo &quot;{$this-&gt;nom} aboie.&quot;;
+    }
+}
+
+// Instanciation de la classe Chien
+$chien = new Chien(&quot;Max&quot;, 3);
+
+// Utilisation des méthodes héritées et spécifiques aux chiens
+$chien-&gt;parler();  // Affiche &quot;Max fait du bruit.&quot;
+$chien-&gt;aboyer();  // Affiche &quot;Max aboie.&quot;
+</code></pre><h2 id="6d7046aa-43ad-46d4-8123-4a9200f1d86b" class="">Chapitre 6: Polymorphisme</h2><p id="dcdbfc94-f979-48d5-8aab-eac87ea3656e" class="">Le polymorphisme est une technique qui permet de gérer des objets de différentes classes de manière interchangeable. Cela signifie qu&#x27;un objet peut être utilisé comme une instance de sa classe d&#x27;origine ou comme une instance d&#x27;une classe dérivée. Le polymorphisme permet de traiter des objets de différentes classes de manière uniforme, en utilisant des méthodes communes définies dans une classe parente ou une interface.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c9405139-27fb-4be3-8517-a4a7291769d6" class="code code-wrap"><code class="language-PHP">interface Animal {
+    public function parler();
+}
+
+class Chien implements Animal {
+    public function parler() {
+        echo &quot;Le chien aboie.&quot;;
+    }
+}
+
+class Chat implements Animal {
+    public function parler() {
+        echo &quot;Le chat miaule.&quot;;
+    }
+}
+
+// Utilisation du polymorphisme
+$chien = new Chien();
+$chat = new Chat();
+
+$animaux = [$chien, $chat];
+
+foreach ($animaux as $animal) {
+    $animal-&gt;parler();  // Affiche &quot;Le chien aboie.&quot; puis &quot;Le chat miaule.&quot;
+}
+</code></pre><h2 id="44d01946-2fd7-432a-9e47-312d1b498696" class="">Chapitre 7: Interfaces</h2><p id="ce48651b-c1fc-43e1-9a1e-bc66bb5b9b5d" class="">Les interfaces définissent les méthodes qu&#x27;une classe doit implémenter, permettant ainsi de définir un contrat entre les classes. Une interface est déclarée à l&#x27;aide du mot-clé <code>interface</code> et les méthodes sont déclarées sans implémentation. Une classe peut implémenter plusieurs interfaces, en fournissant une implémentation pour chaque méthode définie dans l&#x27;interface.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="418cd107-afa9-40a7-a486-dd31e7edef38" class="code code-wrap"><code class="language-PHP">interface Animal {
+    public function parler();
+}
+
+interface AnimalDomestique {
+    public function caresser();
+}
+
+class Chien implements Animal, AnimalDomestique {
+    public function parler() {
+        echo &quot;Le chien aboie.&quot;;
+    }
+
+    public function caresser() {
+        echo &quot;Le chien se laisse caresser.&quot;;
+    }
+}
+
+// Utilisation des interfaces
+$chien = new Chien();
+$chien-&gt;parler();  // Affiche &quot;Le chien aboie.&quot;
+$chien-&gt;caresser();  // Affiche &quot;Le chien se laisse caresser.&quot;
+</code></pre><h2 id="2fa43e61-366a-4ae4-a305-9c1a5c5bc030" class="">Chapitre 8: Traits</h2><p id="084d8433-a5bd-4496-a903-c5e102a1627b" class="">Les traits sont utilisés pour réutiliser du code dans plusieurs classes sans utiliser l&#x27;héritage multiple. Un trait est déclaré à l&#x27;aide du mot-clé <code>trait</code> et peut contenir des méthodes et des propriétés. Les classes peuvent utiliser un trait en les incluant avec le mot-clé <code>use</code>. Les traits permettent d&#x27;étendre les fonctionnalités d&#x27;une classe sans avoir à créer une hiérarchie complexe d&#x27;héritage.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="63793a86-947c-40ec-9fcc-f3855c28f959" class="code code-wrap"><code class="language-PHP">trait Enregistrable {
+    public function enregistrer() {
+        echo &quot;L&#x27;objet est enregistré.&quot;;
+    }
+}
+
+class Document {
+    // Utilisation du trait
+    use Enregistrable;
+}
+
+// Utilisation du trait dans une classe
+$document = new Document();
+$document-&gt;enregistrer();  // Affiche &quot;L&#x27;objet est enregistré.&quot;
+</code></pre><h2 id="dda33d60-f3f1-408b-8b2c-f715019706cb" class="">Chapitre 9: Namespaces</h2><p id="ef9b9001-5dc5-4d2c-8bd8-789445d4e9f7" class="">Les espaces de noms permettent d&#x27;organiser le code en évitant les conflits de noms entre les classes. Un espace de noms est déclaré à l&#x27;aide du mot-clé <code>namespace</code> et peut être utilisé pour regrouper des classes, des interfaces, des traits et des fonctions dans une structure hiérarchique. Les espaces de noms facilitent la réutilisation du code et permettent de distinguer les classes ayant le même nom mais appartenant à différents espaces de noms.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="87c63085-3bf7-46f0-8def-1322fdebb2f4" class="code code-wrap"><code class="language-PHP">namespace MonApplication;
+
+class Utilisateur {
+    // ...
+}
+
+// Utilisation d&#x27;une classe dans un espace de noms
+$utilisateur = new Utilisateur();
+</code></pre><h2 id="69d89d02-9fd6-47f0-a72e-70afcd086564" class="">Chapitre 10: Exceptions</h2><p id="8cb4ddd7-bf2e-4197-9c1d-4034461e4628" class="">Les exceptions sont utilisées pour gérer les erreurs et les situations exceptionnelles dans le code. Une exception est levée lorsqu&#x27;une condition anormale se produit et interrompt normalement le flux d&#x27;exécution du programme. Les exceptions peuvent être attrapées et gérées à l&#x27;aide de blocs <code>try</code> et <code>catch</code>, ce qui permet d&#x27;afficher des messages d&#x27;erreur personnalisés ou de prendre des mesures spécifiques en cas d&#x27;exception.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e97b29f4-aac6-4092-aa88-a763044e4a10" class="code code-wrap"><code class="language-PHP">class MonException extends Exception {
+    // ...
+}
+
+function diviser($nombre, $diviseur) {
+    if ($diviseur === 0) {
+        throw new MonException(&quot;Division par zéro impossible.&quot;);
+    }
+
+    return $nombre / $diviseur;
+}
+
+try {
+    $resultat = diviser(10, 0);
+    echo &quot;Le résultat de la division est : $resultat&quot;;
+} catch (MonException $e) {
+    echo &quot;Une exception a été levée : &quot; . $e-&gt;getMessage();
+}
+</code></pre><h2 id="ce7f796a-7b01-457f-9334-5ac2b2063c45" class="">Chapitre 11: Constructeur et Destructeur</h2><p id="808e7806-d68c-4a55-b5b1-6997e3c4176b" class="">Le constructeur et le destructeur sont des méthodes spéciales qui sont appelées lors de la création et de la destruction d&#x27;un objet. Le constructeur est une méthode spéciale qui est automatiquement appelée lors de l&#x27;instanciation d&#x27;une classe et permet d&#x27;initialiser les propriétés de l&#x27;objet. Le destructeur est une méthode spéciale qui est automatiquement appelée lorsque l&#x27;objet n&#x27;est plus utilisé et permet de libérer les ressources utilisées par l&#x27;objet.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2e80ea3b-ab43-49d3-a910-fc9c993fd43b" class="code code-wrap"><code class="language-PHP">class Personne {
+    // Propriétés
+    public $nom;
+    public $âge;
+
+    // Constructeur
+    public function __construct($nom, $âge) {
+        $this-&gt;nom = $nom;
+        $this-&gt;âge = $âge;
+        echo &quot;Une nouvelle personne a été créée.&quot;;
+    }
+
+    // Destructeur
+    public function __destruct() {
+        echo &quot;La personne {$this-&gt;nom} a été supprimée.&quot;;
+    }
+
+    // Méthodes
+    public function parler() {
+        echo &quot;Je m&#x27;appelle {$this-&gt;nom} et j&#x27;ai {$this-&gt;âge} ans.&quot;;
+    }
+
+    public function marcher() {
+        echo &quot;{$this-&gt;nom} marche.&quot;;
+    }
+}
+
+// Instanciation de la classe
+$personne = new Personne(&quot;Jean&quot;, 25);
+
+// Utilisation des méthodes
+$personne-&gt;parler();  // Affiche &quot;Je m&#x27;appelle Jean et j&#x27;ai 25 ans.&quot;
+$personne-&gt;marcher();  // Affiche &quot;Jean marche.&quot;
+</code></pre><h2 id="ba147336-6693-44ea-a16a-4cac84d57941" class="">Chapitre 12: Modificateurs d&#x27;accès</h2><p id="c42ca796-874d-4a66-855a-3d8b1663695d" class="">Les modificateurs d&#x27;accès permettent de contrôler l&#x27;accès aux propriétés et aux méthodes d&#x27;une classe. Il existe trois modificateurs d&#x27;accès principaux en PHP : <code>public</code>, <code>protected</code> et <code>private</code>. Le modificateur <code>public</code> permet d&#x27;accéder aux propriétés et aux méthodes depuis n&#x27;importe où dans le code. Le modificateur <code>protected</code> permet d&#x27;accéder aux propriétés et aux méthodes uniquement depuis la classe elle-même et ses classes dérivées. Le modificateur <code>private</code> permet d&#x27;accéder aux propriétés et aux méthodes uniquement depuis la classe elle-même.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="934e2750-145e-4fea-87ba-cec239fb733d" class="code code-wrap"><code class="language-PHP">class Personne {
+    // Propriétés avec modificateurs d&#x27;accès
+    public $nom;
+    protected $âge;
+    private $email;
+
+    // Méthodes avec modificateurs d&#x27;accès
+    public function parler() {
+        echo &quot;Je m&#x27;appelle {$this-&gt;nom} et j&#x27;ai {$this-&gt;âge} ans.&quot;;
+    }
+
+    protected function marcher() {
+        echo &quot;{$this-&gt;nom} marche.&quot;;
+    }
+
+    private function envoyerEmail($destinataire, $message) {
+        echo &quot;Email envoyé à $destinataire avec le message : $message&quot;;
+    }
+}
+
+// Instanciation de la classe
+$personne = new Personne();
+$personne-&gt;nom = &quot;Jean&quot;;
+$personne-&gt;âge = 25;
+$personne-&gt;email = &quot;jean@example.com&quot;;  // Erreur : propriété privée
+
+// Utilisation des méthodes
+$personne-&gt;parler();  // Affiche &quot;Je m&#x27;appelle Jean et j&#x27;ai 25 ans.&quot;
+$personne-&gt;marcher();  // Erreur : méthode protégée
+$personne-&gt;envoyerEmail(&quot;ami@example.com&quot;, &quot;Salut !&quot;);  // Erreur : méthode privée
+</code></pre><h1 id="64d2e6b9-2e6f-458e-96d1-9a3c14c8b7ff" class="">Chapitre 13: Constantes de classe</h1><p id="a9587297-e41d-4e56-a15d-b6e6018f68c1" class="">Les constantes de classe sont des valeurs qui ne peuvent pas être modifiées une fois qu&#x27;elles ont été définies. Elles sont définies en utilisant le mot-clé <code>const</code> et sont accessibles sans avoir besoin d&#x27;instancier la classe.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="805286f2-9043-418a-9b11-aee8f461782b" class="code code-wrap"><code class="language-PHP">class MaClasse {
+   const MA_CONSTANTE = &quot;Valeur constante&quot;;
+
+   public function afficherConstante() {
+      echo self::MA_CONSTANTE;
+   }
+}
+
+</code></pre><p id="aa7bfab0-8d25-43ad-ae15-7a27f9178807" class="">Dans cet exemple, nous avons modifié l&#x27;utilisation de la constante en utilisant le mot-clé <code>self</code> au lieu du nom de la classe. Le mot-clé <code>self</code> fait référence à la classe actuelle, ce qui signifie que nous pouvons accéder à la constante en utilisant <code>self::MA_CONSTANTE</code>.</p><p id="e9d5d37a-090e-4550-bfe4-5b25a71e0acc" class="">La différence entre l&#x27;utilisation de <code>self</code> et le nom de la classe est que <code>self</code> est résolu lors de la compilation, tandis que le nom de la classe est résolu lors de l&#x27;exécution. Cela signifie que si vous renommez la classe, le nom de la classe utilisée pour accéder à la constante restera le même avec <code>self</code>, alors qu&#x27;il sera mis à jour avec le nom de la classe si vous utilisez directement le nom de la classe.</p><p id="8da29d49-368b-4e6e-a896-4d6d38e7ebc5" class="">Par exemple, si nous renommons la classe <code>MaClasse</code> en <code>NouvelleClasse</code>, l&#x27;utilisation de <code>self</code> restera la même :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="46794916-352f-459d-a541-2dc7de52edb9" class="code code-wrap"><code class="language-PHP">class NouvelleClasse {
+   const MA_CONSTANTE = &quot;Valeur constante&quot;;
+
+   public function afficherConstante() {
+      echo self::MA_CONSTANTE;
+   }
+}
+
+$objet = new NouvelleClasse();
+$objet-&gt;afficherConstante(); // Affiche &quot;Valeur constante&quot;
+</code></pre><p id="9cfc8c04-de00-4bde-a774-2e916bdd659e" class="">Mais si nous utilisons directement le nom de la classe, il sera mis à jour :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="254351bf-a25a-4c45-ba7b-8aeffc20969c" class="code code-wrap"><code class="language-PHP">class NouvelleClasse {
+   const MA_CONSTANTE = &quot;Valeur constante&quot;;
+
+   public function afficherConstante() {
+      echo NouvelleClasse::MA_CONSTANTE;
+   }
+}
+
+$objet = new NouvelleClasse();
+$objet-&gt;afficherConstante(); // Affiche &quot;Valeur constante&quot;
+</code></pre><p id="418bd95f-12d0-46c7-b547-ce6e2dbe85b9" class="">En résumé, l&#x27;utilisation de <code>self</code> permet d&#x27;accéder à une constante de classe en utilisant la classe actuelle, ce qui peut être utile lorsque vous voulez éviter de mettre à jour le nom de la classe si vous la renommez.</p><h1 id="da16a0e7-2f91-4bb8-8f7e-b86a05e51b1d" class="">Chapitre 14: Classes abstraites</h1><p id="3c694da3-9fd0-499a-9fba-84ae1d1d8936" class="">Une classe abstraite est une classe qui ne peut pas être instanciée, mais qui peut être utilisée comme classe de base pour d&#x27;autres classes. Elle peut contenir des méthodes abstraites, qui doivent être implémentées dans les classes dérivées.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="425c19a2-b915-44f4-a9e6-93d19b729c5c" class="code code-wrap"><code class="language-PHP">abstract class MaClasseAbstraite {
+   abstract public function maMethodeAbstraite();
+}
+
+class MaClasseDerivee extends MaClasseAbstraite {
+   public function maMethodeAbstraite() {
+      // Implémentation de la méthode abstraite
+   }
+}
+</code></pre><h1 id="85123b3f-d310-4bb8-81be-179964e4ffff" class="">Chapitre 15: Différence entre les classes abstraites et les interfaces</h1><p id="0800b63a-d58f-415c-adae-85377f3a1bf3" class="">Les classes abstraites et les interfaces sont deux mécanismes de la programmation orientée objet pour définir des contrats et partager du code entre les classes. La principale différence entre les deux est que les classes abstraites peuvent fournir une implémentation par défaut pour les méthodes, tandis que les interfaces ne peuvent pas.</p><h1 id="8b367758-a6f7-413a-9ccb-ee9b284acdc5" class="">Chapitre 16: Méthodes statiques</h1><p id="ff9d4f23-ae2c-487d-a5f2-f99f0e3bdb33" class="">Les méthodes statiques sont des méthodes qui appartiennent à la classe elle-même et non à une instance spécifique de la classe. Elles peuvent être appelées directement sur la classe sans avoir besoin d&#x27;instancier un objet.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="96222855-3450-417d-8901-754a25e0e93f" class="code code-wrap"><code class="language-PHP">class MaClasse {
+   public static function maMethodeStatique() {
+      // Code de la méthode statique
+   }
+}
+
+MaClasse::maMethodeStatique();
+</code></pre><h1 id="e9275710-9b34-4636-97ac-f37efd73423c" class="">Chapitre 17: Propriétés statiques</h1><p id="f1cf3ef2-7d0c-45c8-a679-d8ee59e57a03" class="">Les propriétés statiques sont des propriétés qui appartiennent à la classe elle-même et non à une instance spécifique de la classe. Elles sont partagées entre toutes les instances de la classe.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="27ec1122-5c23-4de4-8167-c718dc04eb4d" class="code code-wrap"><code class="language-PHP">class MaClasse {
+   public static $maProprieteStatique = &quot;Valeur statique&quot;;
+}
+
+echo MaClasse::$maProprieteStatique;
+</code></pre><h1 id="ef900004-c40a-404e-a540-42864d9281ba" class="">Chapitre 18: Le mot-clé <code>final</code></h1><p id="c5428aeb-792d-46f5-a511-ad409f3b60e1" class="">Le mot-clé <code>final</code> est utilisé pour définir une méthode, une classe ou une propriété qui ne peut pas être modifiée ou étendue par des classes dérivées. Lorsqu&#x27;une méthode est déclarée comme <code>final</code>, elle ne peut pas être redéfinie dans les classes dérivées. Lorsqu&#x27;une classe est déclarée comme <code>final</code>, elle ne peut pas être étendue par d&#x27;autres classes. Lorsqu&#x27;une propriété est déclarée comme <code>final</code>, sa valeur ne peut pas être modifiée après son initialisation.</p><p id="c6a60bbc-c22e-4bb8-98a5-b3928f69fc3c" class="">Voici un exemple pour mieux comprendre :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="58669751-ca75-469b-91d2-6135a086dc6b" class="code code-wrap"><code class="language-PHP">class MaClasse {
+   final public function maMethode() {
+      // Code de la méthode
+   }
+}
+
+class MaClasseDerivee extends MaClasse {
+   // Erreur : Impossible de redéfinir une méthode finale
+}
+
+final class MaClasseFinale {
+   // Code de la classe
+}
+
+class MaClasseDerivee extends MaClasseFinale {
+   // Erreur : Impossible d&#x27;étendre une classe finale
+}
+
+class MaClasse {
+   final public $maPropriete = &quot;Valeur&quot;;
+
+   public function modifierPropriete() {
+      // Erreur : Impossible de modifier une propriété finale
+      $this-&gt;maPropriete = &quot;Nouvelle valeur&quot;;
+   }
+}
+</code></pre><p id="763f71d3-8345-4aa5-a38e-3460614e13d1" class="">Dans cet exemple, la méthode <code>maMethode()</code> de la classe <code>MaClasse</code> est déclarée comme <code>final</code>, ce qui signifie qu&#x27;elle ne peut pas être redéfinie dans la classe dérivée <code>MaClasseDerivee</code>. Lorsque nous essayons de redéfinir cette méthode, une erreur se produit.</p><p id="b9d65708-aeac-4bb8-9171-18480566dabb" class="">De même, la classe <code>MaClasseFinale</code> est déclarée comme <code>final</code>, ce qui signifie qu&#x27;elle ne peut pas être étendue par d&#x27;autres classes. Lorsque nous essayons de dériver une classe de <code>MaClasseFinale</code>, une erreur se produit.</p><p id="5aeb5323-e8ce-4e1e-9b2b-ed06272a4209" class="">Enfin, la propriété <code>$maPropriete</code> de la classe <code>MaClasse</code> est déclarée comme <code>final</code>, ce qui signifie que sa valeur ne peut pas être modifiée après son initialisation. Lorsque nous essayons de modifier cette propriété, une erreur se produit.</p><p id="8f0be627-2a45-4f35-9a36-eb0029342038" class="">Le mot-clé <code>final</code> est utile lorsque nous voulons empêcher une méthode, une classe ou une propriété d&#x27;être modifiée ou étendue par des classes dérivées, afin de garantir une certaine stabilité ou sécurité dans notre code.</p><h1 id="17b6b4a4-0fab-485d-8728-f620a3be8018" class="">Chapitre 19: Autoloader</h1><p id="198edb87-4caa-4e21-868e-e5fe91f7c360" class="">L&#x27;autoloading est un mécanisme qui permet de charger automatiquement les classes lorsqu&#x27;elles sont utilisées pour la première fois dans le code. Cela évite d&#x27;avoir à inclure manuellement chaque fichier de classe avant de pouvoir les utiliser.</p><p id="3f3db486-d311-4682-868b-84e5437d597c" class="">L&#x27;autoloading peut être réalisé de deux manières principales :</p><ol type="1" id="049507f3-df91-42c7-a5ba-2146de81351e" class="numbered-list" start="1"><li><strong>Autoloading classique</strong> : Dans l&#x27;autoloading classique, vous devez définir vous-même une fonction ou une méthode qui sera responsable de charger les classes à la volée. Cette fonction ou méthode est généralement enregistrée avec la fonction <code>spl_autoload_register()</code>, qui permet de spécifier quelle fonction utiliser pour l&#x27;autoloading. Voici un exemple :</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="03743c3b-7c75-4bf2-9955-83806e8b759f" class="code code-wrap"><code class="language-PHP">function monAutoloader($nomClasse) {
+    $cheminFichier = &#x27;chemin/vers/le/dossier/classes/&#x27; . $nomClasse . &#x27;.php&#x27;;
+    if (file_exists($cheminFichier)) {
+        require_once $cheminFichier;
+    }
+}
+
+spl_autoload_register(&#x27;monAutoloader&#x27;);
+</code></pre><p id="225ba876-fd14-40d6-9c3b-457a4734061d" class="">Dans cet exemple, la fonction <code>monAutoloader()</code> est définie pour chercher les fichiers de classe dans un dossier spécifique en utilisant le nom de la classe comme nom de fichier. Si le fichier existe, il est inclus avec <code>require_once</code>. Ensuite, la fonction <code>spl_autoload_register()</code> enregistre <code>monAutoloader()</code> en tant que fonction d&#x27;autoloading.</p><ol type="1" id="9bbe8e31-a96b-4368-ba3f-ba35bc4dc007" class="numbered-list" start="1"><li><strong>Autoloading avec Composer</strong> : Composer est un gestionnaire de dépendances pour PHP qui simplifie l&#x27;installation et la gestion des bibliothèques tierces. Lorsque vous utilisez Composer, il génère automatiquement un fichier d&#x27;autoloading pour vous, basé sur les dépendances déclarées dans votre fichier <code>composer.json</code>. Voici un exemple d&#x27;utilisation de Composer :</li></ol><ul id="1ed89ca9-c1ac-4545-a58e-a488a0494ee5" class="bulleted-list"><li style="list-style-type:disc">Installez Composer en suivant les instructions sur <a href="https://getcomposer.org/">https://getcomposer.org/</a>.</li></ul><ul id="ad94af9a-cb9f-4ddd-9040-c74493565227" class="bulleted-list"><li style="list-style-type:disc">Créez un fichier <code>composer.json</code> pour spécifier vos dépendances :</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0469ee42-a200-433e-a06b-a69ab017aedd" class="code code-wrap"><code class="language-JSON">{
+    &quot;require&quot;: {
+        &quot;monpackage/malibrairie&quot;: &quot;1.0.0&quot;
+    }
+}
+</code></pre><ul id="816c7913-d082-4540-8a54-b1222d156c9e" class="bulleted-list"><li style="list-style-type:disc">Exécutez la commande <code>composer install</code> pour installer les dépendances et générer le fichier d&#x27;autoloading.</li></ul><p id="e6655874-600c-4516-86a8-c62777403b12" class="">Une fois que vous avez généré le fichier d&#x27;autoloading avec Composer, vous pouvez l&#x27;utiliser dans votre code pour charger automatiquement les classes. Voici un exemple :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6352fd6e-bbfd-4241-b6fe-2b7df4e425dc" class="code code-wrap"><code class="language-PHP">require &#x27;vendor/autoload.php&#x27;;
+
+$maClasse = new MonPackage\\MaLibrairie\\MaClasse();
+$maClasse-&gt;methode();
+</code></pre><p id="682bd7fc-4b95-4c24-a31f-5a9708b22914" class="">Dans cet exemple, nous incluons le fichier d&#x27;autoloading généré par Composer avec <code>require &#x27;vendor/autoload.php&#x27;</code>. Ensuite, nous pouvons utiliser les classes de la bibliothèque <code>monpackage/malibrairie</code> sans avoir besoin de les inclure manuellement.</p><p id="a8914bfd-5364-42c3-b087-6c2de12cf0cc" class="">L&#x27;utilisation de Composer pour l&#x27;autoloading facilite grandement la gestion des dépendances et l&#x27;inclusion automatique des classes.</p><p id="9f08bd60-57b6-48fb-a2b9-e7bdc6ef23e3" class="">
+</p><h1 id="96701406-ec88-4d35-abc2-98c075550ecd" class="">Chapitre 20: Méthodes magiques</h1><p id="dc65a451-1e32-4e6d-a836-8d097fc84a5a" class="">Les méthodes magiques en PHP sont des méthodes spéciales qui sont appelées automatiquement par le langage lors de certaines actions sur un objet. Elles commencent toutes par le double soulignement &quot;__&quot;. Voici quelques-unes des méthodes magiques les plus couramment utilisées :</p><ul id="fc2e7c12-b878-4d32-91c7-2b1792a13994" class="bulleted-list"><li style="list-style-type:disc"><code>__construct()</code> : Cette méthode est appelée automatiquement lors de l&#x27;instanciation d&#x27;une classe. Elle est utilisée pour initialiser les propriétés de l&#x27;objet ou effectuer d&#x27;autres actions nécessaires au moment de la création de l&#x27;objet. Voici un exemple :</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="42db7fce-1934-4777-a254-75d6fa06967a" class="code code-wrap"><code class="language-PHP">class MaClasse {
+    public function __construct() {
+        echo &quot;L&#x27;objet a été créé.&quot;;
+    }
+}
+
+$objet = new MaClasse();  // Affiche &quot;L&#x27;objet a été créé.&quot;
+</code></pre><ul id="92bf6f83-ab51-4411-a855-0a4fec38d161" class="bulleted-list"><li style="list-style-type:disc"><code>__destruct()</code> : Cette méthode est appelée automatiquement lorsque l&#x27;objet n&#x27;est plus utilisé et est sur le point d&#x27;être détruit. Elle est utilisée pour effectuer des actions de nettoyage ou de libération de ressources. Voici un exemple :</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="eaa2e737-0801-4d65-8a17-7dae23cd238a" class="code code-wrap"><code class="language-PHP">class MaClasse {
+    public function __destruct() {
+        echo &quot;L&#x27;objet va être détruit.&quot;;
+    }
+}
+
+$objet = new MaClasse();  // Aucun affichage
+unset($objet);  // Affiche &quot;L&#x27;objet va être détruit.&quot;
+</code></pre><ul id="cb1c280d-5949-4cb3-810e-3d09e6ad8ca7" class="bulleted-list"><li style="list-style-type:disc"><code>__get($propriete)</code> : Cette méthode est appelée automatiquement lorsque l&#x27;on tente d&#x27;accéder à une propriété non accessible depuis l&#x27;extérieur de la classe. Elle permet de définir un comportement personnalisé pour récupérer la valeur d&#x27;une propriété. Voici un exemple :</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b64c37d4-e05a-45b8-bd83-9a1d8675576b" class="code code-wrap"><code class="language-PHP">class MaClasse {
+    private $propriete;
+
+    public function __get($nom) {
+        if ($nom === &#x27;propriete&#x27;) {
+            return $this-&gt;propriete;
+        }
+        return null;
+    }
+}
+
+$objet = new MaClasse();
+$objet-&gt;propriete = &quot;Valeur&quot;;
+echo $objet-&gt;propriete;  // Affiche &quot;Valeur&quot;
+</code></pre><ul id="074e71c8-f3be-4db0-8e5a-02d238f21903" class="bulleted-list"><li style="list-style-type:disc"><code>__set($propriete, $valeur)</code> : Cette méthode est appelée automatiquement lorsque l&#x27;on tente de définir une valeur à une propriété non accessible depuis l&#x27;extérieur de la classe. Elle permet de définir un comportement personnalisé pour la modification de la valeur d&#x27;une propriété. Voici un exemple :</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="aafb82a8-ed46-4209-975f-4e62b72654a4" class="code code-wrap"><code class="language-PHP">class MaClasse {
+    private $propriete;
+
+    public function __set($nom, $valeur) {
+        if ($nom === &#x27;propriete&#x27;) {
+            $this-&gt;propriete = $valeur;
+        }
+    }
+}
+
+$objet = new MaClasse();
+$objet-&gt;propriete = &quot;Nouvelle valeur&quot;;
+echo $objet-&gt;propriete;  // Affiche &quot;Nouvelle valeur&quot;
+</code></pre><p id="f7e4393f-3f1a-40b2-a8cb-67676c99e821" class="">Ces méthodes magiques sont très utiles pour personnaliser le comportement des objets dans certaines situations spécifiques, comme l&#x27;initialisation des propriétés, le nettoyage de ressources ou la gestion des accès aux propriétés.</p><h1 id="9055030e-bd58-43fd-9963-ed88a2030f86" class="">Chapitre 21: Gestion des Erreurs et Exceptions</h1><p id="a723c191-2e2f-47ac-9821-50205c3143a9" class="">La gestion des erreurs et des exceptions en PHP orienté objet (POO) est une partie importante du développement robuste et fiable d&#x27;applications. Les erreurs peuvent survenir lors de l&#x27;exécution du code et peuvent entraîner un comportement indésirable ou une interruption du programme. Les exceptions sont utilisées pour gérer ces erreurs de manière contrôlée et fournir des messages d&#x27;erreur appropriés.</p><p id="97b8b24c-b16d-4392-8c7c-ff31b11cd46d" class="">Pour capturer et gérer les exceptions en PHP, on utilise les blocs <code>try</code>, <code>catch</code> et <code>throw</code>. Voici comment ils fonctionnent ensemble :</p><ul id="593f7e2b-2dfc-40a8-9352-7f752f9009dd" class="bulleted-list"><li style="list-style-type:disc">Le bloc <code>try</code> : Il contient le code qui pourrait potentiellement générer une exception. Le code à l&#x27;intérieur du bloc <code>try</code> est exécuté normalement jusqu&#x27;à ce qu&#x27;une exception soit levée.</li></ul><ul id="356d4ca7-c786-4a46-a148-dfdf3d7a8591" class="bulleted-list"><li style="list-style-type:disc">Le bloc <code>catch</code> : Il est utilisé pour capturer et gérer les exceptions levées dans le bloc <code>try</code>. Un bloc <code>catch</code> peut gérer différentes exceptions en fonction de leurs types. Chaque bloc <code>catch</code> est associé à un type d&#x27;exception spécifique et contient le code à exécuter pour gérer cette exception.</li></ul><ul id="0768b1e3-b289-4460-83dc-a587c182efc8" class="bulleted-list"><li style="list-style-type:disc">Le bloc <code>throw</code> : Il est utilisé pour lever une exception explicite à un point spécifique du code. Une exception peut être levée à tout moment dans le code, que ce soit à l&#x27;intérieur d&#x27;un bloc <code>try</code> ou à l&#x27;extérieur.</li></ul><p id="e3aa8b00-a5cb-4637-98df-49484215cb9d" class="">Voici un exemple de gestion d&#x27;exception en PHP POO :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6ee8bcc8-8531-43fe-9c83-5b0afd134902" class="code code-wrap"><code class="language-PHP">class MonException extends Exception {
+    // Définir des propriétés ou des méthodes spécifiques à l&#x27;exception
+}
+
+try {
+    // Code susceptible de générer une exception
+    if (condition) {
+        throw new MonException(&quot;Un message d&#x27;erreur personnalisé&quot;);
+    }
+    // Autres instructions
+} catch (MonException $e) {
+    // Gérer l&#x27;exception spécifique MonException
+    echo &quot;Une exception de type MonException a été levée : &quot; . $e-&gt;getMessage();
+} catch (Exception $e) {
+    // Gérer toutes les autres exceptions
+    echo &quot;Une exception a été levée : &quot; . $e-&gt;getMessage();
+}
+</code></pre><p id="a958c93b-0c3d-4b9e-a880-1577aca2bdea" class="">Dans cet exemple, nous avons une classe personnalisée <code>MonException</code> qui étend la classe de base <code>Exception</code>. Dans le bloc <code>try</code>, nous avons une condition qui, si elle est vraie, lève une exception <code>MonException</code> avec un message d&#x27;erreur personnalisé. Si cette exception est levée, elle est capturée et gérée par le bloc <code>catch</code> correspondant à <code>MonException</code>. Si une autre exception (qui n&#x27;est pas de type <code>MonException</code>) est levée, elle est capturée et gérée par le bloc <code>catch</code> associé à <code>Exception</code>.</p><p id="a6418098-9f61-4f00-b740-d70f1c25ad19" class="">Il est important de noter que l&#x27;ordre des blocs <code>catch</code> est important. Les blocs <code>catch</code> doivent être placés du plus spécifique au plus général. Si un bloc <code>catch</code> plus général est placé avant un bloc <code>catch</code> plus spécifique, le bloc <code>catch</code> plus général capturera également les exceptions spécifiques, ce qui peut entraîner un comportement indésirable.</p><p id="6efa8aa6-f077-4a6d-8219-9398bb1322ab" class="">La gestion des erreurs et des exceptions en PHP POO permet de contrôler le flux d&#x27;exécution du programme lorsqu&#x27;une condition anormale se produit. Cela permet d&#x27;afficher des messages d&#x27;erreur personnalisés, de prendre des mesures spécifiques en cas d&#x27;exception et de garantir le bon fonctionnement de l&#x27;application même en présence d&#x27;erreurs.</p><p id="b601c82a-60df-4d23-af68-031f6a16d5a7" class="">
+</p><h1 id="360ef1ca-8d7a-4e7f-a0f5-9c2697f860ff" class="">Chapitre 22: Principes SOLID</h1><p id="7157015c-c919-4678-a7e0-cc9408d36ecd" class="">Bien sûr! Voici comment les principes SOLID peuvent être appliqués en PHP avec quelques exemples :</p><h3 id="db96d0f2-4df5-41d1-b1aa-2d5dcd03e302" class="">Principe de Responsabilité Unique (SRP)</h3><p id="7297fa8e-4383-4ba6-a781-82532b8c12fd" class="">Ce principe stipule qu&#x27;une classe ne devrait avoir qu&#x27;une seule raison de changer. Par exemple, si nous avons une classe <code>Utilisateur</code> qui gère à la fois l&#x27;authentification et la gestion des profils, nous pourrions diviser cette classe en deux classes distinctes : <code>Authentification</code> et <code>GestionProfil</code>. Chaque classe aurait sa propre responsabilité et serait plus facile à maintenir.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b94e0641-fc70-4723-b503-b6b30dfd7114" class="code code-wrap"><code class="language-PHP">class Authentification {
+   public function login($identifiant, $motDePasse) {
+      // Logique d&#x27;authentification
+   }
+}
+
+class GestionProfil {
+   public function modifierProfil($utilisateur, $nouveauxParametres) {
+      // Logique de modification du profil
+   }
+}
+</code></pre><h3 id="961d4699-3079-4fc3-a825-07bb01cd1edb" class="">Principe Ouvert/Fermé (OCP)</h3><p id="db80d4f5-1705-487c-972b-5e1e365837ed" class="">Ce principe stipule qu&#x27;une classe doit être ouverte à l&#x27;extension mais fermée à la modification. Par exemple, si nous avons une classe <code>Calculateur</code> qui effectue des opérations mathématiques, nous pouvons rendre cette classe extensible en utilisant l&#x27;héritage et en créant des sous-classes pour chaque opération spécifique.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="678600c6-9e47-41d2-9064-91002af4ef5a" class="code code-wrap"><code class="language-PHP">abstract class Calculateur {
+   abstract public function calculer($nombre1, $nombre2);
+}
+
+class Addition extends Calculateur {
+   public function calculer($nombre1, $nombre2) {
+      return $nombre1 + $nombre2;
+   }
+}
+
+class Multiplication extends Calculateur {
+   public function calculer($nombre1, $nombre2) {
+      return $nombre1 * $nombre2;
+   }
+}
+</code></pre><h3 id="6c5e14a7-14d5-43a5-a9da-65d0ebb42e72" class="">Principe de Substitution de Liskov (LSP)</h3><p id="8ed3d482-6605-4737-a2f4-06bab85fb19c" class="">Ce principe stipule que les objets d&#x27;une classe dérivée doivent pouvoir être utilisés en remplacement des objets de la classe de base sans altérer la cohérence du programme. Par exemple, si nous avons une classe <code>Animal</code> avec une méthode <code>manger()</code>, nous pouvons créer des classes dérivées telles que <code>Chien</code> et <code>Chat</code> qui héritent de <code>Animal</code> et implémentent la méthode <code>manger()</code> de manière appropriée.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1fd7d028-4707-4e8b-a06a-042286dfb962" class="code code-wrap"><code class="language-PHP">abstract class Animal {
+   abstract public function manger();
+}
+
+class Chien extends Animal {
+   public function manger() {
+      // Logique spécifique pour le chien
+   }
+}
+
+class Chat extends Animal {
+   public function manger() {
+      // Logique spécifique pour le chat
+   }
+}
+</code></pre><h3 id="8527865f-4abe-4f3a-b6bd-4b625953662e" class="">Principe de Ségrégation des Interfaces (ISP)</h3><p id="891945a4-176d-4aa2-9ad7-9795ee5a7b65" class="">Ce principe stipule qu&#x27;aucune classe ne doit être forcée de dépendre d&#x27;interfaces dont elle n&#x27;a pas besoin. Par exemple, si nous avons une interface <code>EnvoiEmail</code> avec une méthode <code>envoyerEmail()</code>, nous pouvons créer des interfaces spécifiques pour chaque type d&#x27;envoi d&#x27;email, comme <code>EnvoiEmailSMTP</code> et <code>EnvoiEmailAPI</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bf264cff-5c3e-4031-82f7-63f2ae1960b0" class="code code-wrap"><code class="language-PHP">interface EnvoiEmail {
+   public function envoyerEmail($destinataire, $sujet, $message);
+}
+
+interface EnvoiEmailSMTP {
+   public function envoyerEmailSMTP($destinataire, $sujet, $message);
+}
+
+interface EnvoiEmailAPI {
+   public function envoyerEmailAPI($destinataire, $sujet, $message);
+}
+</code></pre><h3 id="2b7adc1d-3995-437d-8002-33c4cd896379" class="">Principe d&#x27;Inversion des Dépendances (DIP)</h3><p id="c8f309e5-125c-40c7-bf7b-a61ad61e0299" class="">Ce principe stipule que les modules de haut niveau ne doivent pas dépendre des modules de bas niveau. Au lieu de cela, les deux doivent dépendre d&#x27;abstractions. Par exemple, si nous avons une classe <code>Facture</code> qui dépend d&#x27;une classe <code>BaseDeDonnees</code> pour récupérer les données, nous pouvons inverser la dépendance en utilisant une interface <code>InterfaceBaseDeDonnees</code> pour représenter la dépendance.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f7822512-9541-4aed-91e3-49fa1d547f1f" class="code code-wrap"><code class="language-PHP">interface InterfaceBaseDeDonnees {
+   public function recupererDonnees();
+}
+
+class BaseDeDonnees implements InterfaceBaseDeDonnees {
+   public function recupererDonnees() {
+      // Logique pour récupérer les données de la base de données
+   }
+}
+
+class Facture {
+   protected $baseDeDonnees;
+
+   public function __construct(InterfaceBaseDeDonnees $baseDeDonnees) {
+      $this-&gt;baseDeDonnees = $baseDeDonnees;
+   }
+
+   public function genererFacture() {
+      $donnees = $this-&gt;baseDeDonnees-&gt;recupererDonnees();
+      // Logique pour générer la facture à partir des données
+   }
+}
+</code></pre><p id="fec8a6a4-f4d8-4cf0-9fcd-acd4584ae333" class="">En appliquant ces principes SOLID en PHP, vous pouvez créer un code modulaire, extensible, facilement testable et réutilisable. Cela vous permettra de développer des applications PHP de haute qualité et de les maintenir plus facilement à mesure qu&#x27;elles évoluent.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
